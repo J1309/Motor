@@ -221,9 +221,62 @@ body.cursor-has-label .ed-cursor-label {
   background: var(--paper);
 }
 
-/* ---------- Preloader ---------- */
+/* ---------- Preloader (Minimal Editorial Precision Rotor) ---------- */
 .preloader {
   background: var(--paper) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ed-preloader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.preloader .spinner-loader img {
+  width: 76px;
+  height: 76px;
+  display: block;
+}
+
+.ed-preloader-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+
+.ed-preloader-bar {
+  width: 72px;
+  height: 1px;
+  background: var(--rule);
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.ed-preloader-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 100%;
+  background: var(--crimson);
+  animation: edPreloadSweep 1.2s var(--ease-editorial) infinite;
+}
+
+@keyframes edPreloadSweep {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(240%);
+  }
 }
 
 /* ---------- Masthead Navigation (Quiet Chrome, Single Line, <= 72px) ---------- */
@@ -1763,41 +1816,17 @@ body.cursor-has-label .ed-cursor-label {
   padding: 48px 0 36px;
   border-bottom: 1px solid var(--rule-strong);
   display: flex;
-  align-items: baseline;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
   overflow: hidden;
 }
 
-.ed-footer-wordmark {
-  font-family: var(--font-display);
-  font-size: clamp(3.1rem, 9.4vw, 9.2rem);
-  font-weight: 400;
-  letter-spacing: -0.038em;
-  line-height: 0.9;
-  color: var(--ink);
-  margin: 0;
-  user-select: none;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 18px;
-}
-
-.ed-footer-wordmark-aperture {
-  display: inline-block;
-  width: clamp(92px, 13.5vw, 210px);
-  height: clamp(44px, 6.4vw, 94px);
-  background-color: var(--obsidian);
-  background-image: url("../images/editorial/hero-new-4-prismatic-paint.jpg");
-  background-size: cover;
-  background-position: center;
-  vertical-align: middle;
-  transition: transform 500ms var(--ease-editorial);
-}
-
-.ed-footer-monument:hover .ed-footer-wordmark-aperture {
-  transform: scale(1.04);
+.ed-footer-monument-logo {
+  display: block;
+  width: clamp(260px, 44vw, 560px);
+  height: auto;
+  object-fit: contain;
 }
 
 .ed-footer-edition-stamp {
